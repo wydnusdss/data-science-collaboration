@@ -25,6 +25,14 @@ logger = logging.getLogger(__name__)
 warnings.filterwarnings('ignore')
 
 
+def calculate_statistics(data):
+    """Calculate basic statistics for dataset."""
+    return {
+        'mean': data.mean(),
+        'std': data.std(),
+        'count': len(data)
+    }
+
 def setup_plotting_style():
     """
     Set up consistent plotting style for all visualizations.
