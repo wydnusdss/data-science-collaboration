@@ -27,9 +27,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 """Model training utilities."""
-from sklearn.ensemble import GradientBoostingClassifier
-def train_model(X_train, y_train):
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+def train_model(X_train, y_train, model_type='random_forest'):
  """Train a machine learning model."""
+ if model_type == 'gradient_boosting':
  # Use Gradient Boosting for better performance
  model = GradientBoostingClassifier(
  n_estimators=200,
@@ -37,6 +38,14 @@ def train_model(X_train, y_train):
  max_depth=5,
  random_state=42
  )
+ else:
+ # Use Random Forest as default
+ model = RandomForestClassifier(
+ n_estimators=100,
+ max_depth=10,
+ random_state=42
+ )
+ 
  model.fit(X_train, y_train)
  return model
 
